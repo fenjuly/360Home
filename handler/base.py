@@ -8,10 +8,13 @@
 
 import tornado.web
 import time
+import lib.session
 
 class BaseHandler(tornado.web.RequestHandler):
     def __init__(self, *argc, **argkw):
         super(BaseHandler, self).__init__(*argc, **argkw)
+        self.session = lib.session.Session(self.application.session_manager, self)
+        self.user_model = self.application.user_model
 
 @property
 def db(self):

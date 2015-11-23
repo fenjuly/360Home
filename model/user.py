@@ -5,10 +5,24 @@ import pymongo
 
 class UserModel(object):
     def __init__(self, db):
-        conn = pymongo.Connection("localhost", 27017)
-        self.db = conn["example"]
+        self.db = db
+        self.coll = self.db.user
 
     def get_user_by_uid(self, uid):
-        coll = self.application.db.user
-        word_doc = coll.find_one({"_id": uid})
-        return word_doc
+        user = self.coll.find_one({"_id": uid})
+        return user
+
+    def get_user_by_qq(self, qq):
+        user = self.coll.find_one({"qq": qq})
+        return user
+
+    def get_user_by_wechat(self, wechat):
+        user = self.coll.find_one({"wechat": wechat})
+        return user
+
+    def get_user_by_username(self, username):
+        user = self.coll.find_one({"username": username})
+        return user
+
+    def add_new_user(self, user_info):
+        return self.coll.insert(user_info)
