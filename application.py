@@ -48,6 +48,8 @@ class Application(tornado.web.Application):
 
         handlers = [
             (r"/register", handler.user.RegisterHandler),
+            (r"/u/(\w+)", handler.user.UserDetailHandler),
+            (r"/edit", handler.user.UserModifyHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)

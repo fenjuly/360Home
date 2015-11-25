@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-import pymongo
 
 class UserModel(object):
     def __init__(self, db):
@@ -26,3 +25,8 @@ class UserModel(object):
 
     def add_new_user(self, user_info):
         return self.coll.insert(user_info)
+
+    def update_user(self, username, user_info):
+        print({"$set": user_info})
+        return self.coll.update({"username": username}, {"$set": user_info})
+
