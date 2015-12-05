@@ -23,6 +23,7 @@ import tornado.web
 
 import handler.base
 import handler.user
+import handler.home
 
 from pymongo import MongoClient
 from tornado.options import define, options
@@ -47,6 +48,7 @@ class Application(tornado.web.Application):
         )
 
         handlers = [
+            (r"/", handler.home.IndexHandler),
             (r"/register", handler.user.RegisterHandler),
             (r"/u/(\w+)", handler.user.UserDetailHandler),
             (r"/edit", handler.user.UserModifyHandler),
