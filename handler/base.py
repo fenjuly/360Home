@@ -15,6 +15,7 @@ class BaseHandler(tornado.web.RequestHandler):
         super(BaseHandler, self).__init__(*argc, **argkw)
         self.session = lib.session.Session(self.application.session_manager, self)
         self.user_model = self.application.user_model
+        self.blog_model = self.application.blog_model
 
 @property
 def db(self):

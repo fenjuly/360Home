@@ -24,6 +24,7 @@ import tornado.web
 import handler.base
 import handler.user
 import handler.home
+import handler.blog
 
 from pymongo import MongoClient
 from tornado.options import define, options
@@ -52,6 +53,7 @@ class Application(tornado.web.Application):
             (r"/register", handler.user.RegisterHandler),
             (r"/u/(\w+)", handler.user.UserDetailHandler),
             (r"/edit", handler.user.UserModifyHandler),
+            (r"/b", handler.blog.BlogHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -62,6 +64,8 @@ class Application(tornado.web.Application):
         self.loader = Loader(self.db)
 
         self.user_model = self.loader.use("user.model")
+
+        self.blog_model = self.loader.use("blog.model")
 
         self.session_manager = SessionManager(settings["cookie_secret"], ["127.0.0.1:11211"], 0)
 

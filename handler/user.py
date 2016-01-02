@@ -92,7 +92,8 @@ class RegisterHandler(BaseHandler):
             "state": '',
             "avatar": '',
             "blogs": {},
-            "created": time.strftime('%Y-%m-%d %H:%M:%S')
+            "created": time.strftime('%Y-%m-%d %H:%M:%S'),
+            "modified": time.strftime('%Y-%m-%d %H:%M:%S')
         }
 
         user_id = self.user_model.add_new_user(user_info)
